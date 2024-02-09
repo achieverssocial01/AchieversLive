@@ -3,6 +3,9 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { axiosClient } from "../Utils/axiosClient";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
+
 import Spinner from "./Loaders/Spinner";
 const CreateAccount = () => {
     const navigate = useNavigate();
@@ -10,7 +13,7 @@ const CreateAccount = () => {
     const [alreadyRegister, setAlreadyRegister] = useState(false);
     const [somethingWentWrong, setSomethingWentWrong] = useState(false);
     const [loading, setLoading] = useState(false);
-
+    const [showPassword, setShowPassword] = useState(false);
     const [userInput, setUserInput] = useState({
         name: "",
         phone: 1237890,
@@ -34,31 +37,27 @@ const CreateAccount = () => {
                 return alert("Please enter valid password");
             }
             setLoading(true);
-            const responce = await axiosClient.post('register',
-                {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    password: password,
-                    referal: referal,
-                }
-            );
+            const responce = await axiosClient.post("register", {
+                name: name,
+                phone: phone,
+                email: email,
+                password: password,
+                referal: referal,
+            });
             console.log(responce);
-            if(responce?.status == 200){
-            setLoading(false);
-                navigate("/login")
-              }
-
+            if (responce?.status == 200) {
+                setLoading(false);
+                navigate("/login");
+            }
         } catch (error) {
             if (error.response.status === 403) {
                 setAlreadyRegister(true);
                 return setLoading(false);
-           }
-           
-           setSomethingWentWrong(true);
-           return setLoading(false);
+            }
+
+            setSomethingWentWrong(true);
+            return setLoading(false);
         }
-         
     };
 
     return (
@@ -122,7 +121,7 @@ const CreateAccount = () => {
                             }
                             type="text"
                             name="contact"
-                        required
+                            required
                             placeholder="Enter Contact Number"
                             className="rounded-full border-2 px-4 py-2 w-full text-white border-[#8B8989] bg-[#100D0F]"
                         />
@@ -135,7 +134,7 @@ const CreateAccount = () => {
                             }
                             type="text"
                             name="name"
-                        required
+                            required
                             placeholder="Enter Full Name"
                             className="rounded-full border-2 w-full px-4 py-2 text-white border-[#8B8989] bg-[#100D0F]"
                         />
@@ -155,26 +154,45 @@ const CreateAccount = () => {
                         placeholder="Enter Email Address"
                         className="rounded-full w-full  px-4 py-2 border-2 text-white  border-[#8B8989] bg-[#100D0F]"
                     />
-                     {alreadyRegister && (
-                                <span className="ml-2 text-red-600   text-sm">
-                                    User already register, please sign in!
-                                </span>
-                            )}
+                    {alreadyRegister && (
+                        <span className="ml-2 text-red-600   text-sm">
+                            User already register, please sign in!
+                        </span>
+                    )}
 
                     <div className="flex gap-4 flex-col md:flex-row  text-[lato] font-normal">
-                        <input
-                            onChange={(e) =>
-                                setUserInput({
-                                    ...userInput,
-                                    password: e.target.value,
-                                })
-                            }
-                            type="text"
-                            name="password"
-                        required
-                            placeholder="Enter Password"
-                            className="rounded-full border-2 w-full text-white px-4 py-2 border-[#8B8989] bg-[#100D0F]"
-                        />
+                        <div className="flex relative w-full">
+                            <input
+                                onChange={(e) =>
+                                    setUserInput({
+                                        ...userInput,
+                                        password: e.target.value,
+                                    })
+                                }
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                required
+                                placeholder="Enter Password"
+                                className="rounded-full border-2 w-full text-white px-4 py-2 border-[#8B8989] bg-[#100D0F]"
+                            />
+                            {showPassword ? (
+                                <AiFillEye
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    color="#ffffff"
+                                    className="absolute right-0 top-[0] bottom-0 my-auto mr-6"
+                                />
+                            ) : (
+                                <AiFillEyeInvisible
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    color="#ffffff"
+                                    className="absolute right-0 top-[0] bottom-0 my-auto mr-6"
+                                />
+                            )}
+                        </div>
                         <input
                             onChange={(e) =>
                                 setUserInput({
@@ -182,9 +200,9 @@ const CreateAccount = () => {
                                     confirm_password: e.target.value,
                                 })
                             }
-                            type="text"
+                            type={showPassword ? "text" : "password"}
                             name="confirm password"
-                        required
+                            required
                             placeholder="Confirm Password"
                             className="rounded-full border-2 w-full text-white px-4 py-2 border-[#8B8989] bg-[#100D0F]"
                         />
@@ -192,32 +210,34 @@ const CreateAccount = () => {
 
                     <div className="flex justify-center gap-2 ">
                         <input
-                        checked
+                            checked
                             type="radio"
                             id="radioCheck"
                             name="agree"
                             value="Subject1"
-                        required
+                            required
                             className=" h-4 w-4 bg-black px-4 py-2 text-white"
                         />
-                        <label htmlFor="radioCheck" className=" text-white justify-start text-xs">
+                        <label
+                            htmlFor="radioCheck"
+                            className=" text-white justify-start text-xs"
+                        >
                             By continuing, you agree to Name’s Terms of Service
                             & Privacy Policy
                         </label>
                     </div>
                     {somethingWentWrong && (
-                                <span className="ml-2 text-red-600   text-sm">
-                                    Something Went Wrong
-                                </span>
-                            )}
+                        <span className="ml-2 text-red-600   text-sm">
+                            Something Went Wrong
+                        </span>
+                    )}
 
                     <button
-                    disabled={loading}
+                        disabled={loading}
                         onClick={submitUserData}
                         className="w-full md:px-[286px] h-[45px] rounded-full bg-[#4B006E] leading-7 font-bold text-white"
                     >
-                        {loading ? <Spinner/> :
-                                "Continue"}
+                        {loading ? <Spinner /> : "Continue"}
                     </button>
 
                     <span className="flex text-sm gap-2 justify-center">

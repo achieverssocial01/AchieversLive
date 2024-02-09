@@ -9,6 +9,8 @@ import { axiosClient } from "../Utils/axiosClient";
 import { login } from "../Store/authSlice";
 import { useDispatch } from "react-redux";
 import { KEY_ACCESS_TOKEN, setItem } from "../Utils/localStorageManager";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 import Spinner from "./Loaders/Spinner";
 
 const LogIn = () => {
@@ -21,6 +23,7 @@ const LogIn = () => {
     const [notRegister, setNotRegister] = useState(false);
     const [somethingWentWrong, setSomethingWentWrong] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const submitUserData = async (e) => {
         e.preventDefault();
@@ -125,15 +128,16 @@ const LogIn = () => {
                                 }}
                                 placeholder="Enter Email Address"
                                 style={{ background: "none" }}
-                                className="rounded-full p-[15px]  border-2 text-sm  text-white border-[#8B8989] "
+                                className="rounded-full p-[15px]  border-2 text-sm  text-white border-[#8B8989] select-none "
                             />
                             {notRegister && (
                                 <span className="ml-2 text-yellow-600   text-sm">
                                     User Not Exist
                                 </span>
                             )}
+                            <div className="flex relative">
                             <input
-                                type="text"
+                                type={showPassword ? "text" : "password"}
                                 name="password"
                                 onChange={(e) => {
                                     setIncorrectPassword(false);
@@ -143,8 +147,12 @@ const LogIn = () => {
                                     });
                                 }}
                                 placeholder="Enter Password"
-                                className="rounded-full w-full p-[15px] text-white  border-2  text-sm  border-[#8B8989] bg-[#100D0F]"
+                                className="rounded-full w-full py-[15px] pl-[15px] pr-[45px] text-white  border-2  text-sm  border-[#8B8989] bg-[#100D0F] select-none"
                             />
+                           {showPassword ? <AiFillEye onClick={()=>setShowPassword(!showPassword)} color="#ffffff" className="absolute right-0 top-[0] bottom-0 my-auto mr-6"/> :
+                            <AiFillEyeInvisible onClick={()=>setShowPassword(!showPassword)} color="#ffffff" className="absolute right-0 top-[0] bottom-0 my-auto mr-6"/>}
+
+                            </div>
                             {incorrectPassword && (
                                 <span className="ml-2 text-red-600   text-sm">
                                     Incorrect password !

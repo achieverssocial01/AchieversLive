@@ -74,7 +74,7 @@ const Profile = () => {
                         <hr className="w-full my-4" />
 
                         <form
-                            // onSubmit={handleSumit}
+                            onSubmit={handleSumit}
                             className="flex flex-col gap-2"
                         >
                             <div className="flex flex-col md:flex-row gap-5">
@@ -331,7 +331,8 @@ const Profile = () => {
                                     </button>
                                 ) : (
                                     <button
-                                        onClick={handleSumit}
+                                        // onClick={handleSumit}
+                                        type="submit"
                                         className="w-fit h-11 px-4 py-2 mt-5 rounded-full bg-[#4B006E] leading-7 font-bold text-white flex gap-2 ml-1"
                                     >
                                         <FaPen className="ml-1 h-6 w-6" />

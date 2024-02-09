@@ -28,18 +28,18 @@ const Footer = () => {
                         industry experts and ignite your drive for success.
                     </p>
                     <div className="flex justify-center md:justify-start gap-[10px]">
-                        <Link  to="https://www.instagram.com/">
+                        <a href="https://www.instagram.com/" target="_blank">
                             <IoLogoInstagram size={20} />
-                        </Link>
-                        <Link  to="https://www.linkedin.com/">
+                        </a>
+                        <a  href="https://www.linkedin.com/" target="_blank">
                             <IoLogoLinkedin size={20} />
-                        </Link>
-                        <Link  to="https://www.facebook.com/">
+                        </a>
+                        <a  href="https://www.facebook.com/" target="_blank">
                             <IoLogoFacebook size={20} />
-                        </Link>
-                        <Link  to="https://www.youtube.com/">
+                        </a>
+                        <a  href="https://www.youtube.com/" target="_blank">
                             <IoLogoYoutube size={20} />
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 <div className="flex-1 flex flex-col md:flex-row text-white md:flex justify-evenly gap-8 mt-7">
@@ -47,17 +47,17 @@ const Footer = () => {
                         <h2 className="leading-7 font-montserrat text-lg font-semibol">
                             Explore
                         </h2>
-                        <span className="leading-7 font-sans font-medium text-sm ">
-                            <p onClick={() => navigate("/")}>Home</p>
-                            <p onClick={() => navigate("/aboutUs")}>About US</p>
-                            <p onClick={() => navigate("/viewpackage")}>
+                        <div className="flex flex-col leading-7 font-sans font-medium text-sm ">
+                            <Link to={"/"}>Home</Link>
+                            <Link to={"/aboutUs"}>About US</Link>
+                            <Link to={"/all-courses"}>
                                 Course Packages
-                            </p>
-                            <p onClick={() => navigate("/blog")}>Blogs</p>
-                            <p onClick={() => navigate("/contactus")}>
+                            </Link>
+                            <Link to={"/blog"}>Blogs</Link>
+                            <Link to={"/contactus"}>
                                 Contact Us
-                            </p>
-                        </span>
+                            </Link>
+                        </div>
                     </div>
 
                     <div className="">

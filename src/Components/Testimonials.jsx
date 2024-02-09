@@ -3,7 +3,7 @@ import { MdOutlineStarPurple500, MdStarOutline } from "react-icons/md";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 const Testimonials = () => {
 
-  const [translate, setTranslate] = useState(100);
+  const [translate, setTranslate] = useState(0);
 
   const handleNext = () => {
     setTranslate(translate + 1 * 100);
@@ -12,7 +12,7 @@ const Testimonials = () => {
   console.log(translate);
 
   const handlePrev = () => {
-    setTranslate(translate - 1 * 100);
+    setTranslate((prevVal)=>prevVal - 1 * 100);
     // setTranslate((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
   };
 

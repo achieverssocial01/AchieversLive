@@ -1,5 +1,6 @@
 import React from "react";
 import Subscribe from "./Subscribe";
+import { Link } from "react-router-dom";
 const AboutUs = () => {
     const containerStyle = {
         backgroundImage: "url(/img/bgimg.png)",
@@ -29,9 +30,9 @@ const AboutUs = () => {
                          educational hub; it's a gateway to opportunities
                         and financial independence.
                     </p>
-                    <button className=" mt-8 rounded-full w-[137px] h-[40px] md:h-9 text-white font-montserrat font-semibold bg-[#4B006E]">
+                    <Link to={'/all-courses'} className=" mt-8 rounded-full w-[137px] block px-5 py-4 mx-auto text-white font-montserrat font-semibold bg-[#4B006E]">
                         Get Started
-                    </button>
+                    </Link>
                 </div>
             </div>
 

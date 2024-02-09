@@ -43,7 +43,7 @@ const NavBar2 = () => {
     return (
         <>
             <nav
-                className={`flex md:justify-between w-full sticky top-0 z-10 text-white items-center  md:p-8`}
+                className={`flex md:justify-between w-full sticky top-0 z-10 text-white items-center backdrop-blur-[30px] md:p-8`}
             >
                 <div className="hidden md:flex items-center gap-4 ">
                     <img
