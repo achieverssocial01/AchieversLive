@@ -16,7 +16,7 @@ const MobilleMenu = ({menu, setMenu}) => {
     const [select, setSelected] = useState(0);
     const [showPackages, setShowPackages] = useState(false);
     const navigate = useNavigate();
-    const { user } = useSelector((state) => state.auth);
+    const { isLoggedIn,user } = useSelector((state) => state.auth);
     // const { user, setuser } = useContext(Usercontext);
     const { selectedPage, setSelectedPage } = useContext(DashboardContext);
     const menuRef = useRef();
@@ -153,7 +153,7 @@ const MobilleMenu = ({menu, setMenu}) => {
                 >
                     Blogs
                 </Link>
-                {user && (
+                {isLoggedIn && (
                     <>
                         <Link
                             to="/course"
@@ -257,12 +257,17 @@ const MobilleMenu = ({menu, setMenu}) => {
           </Link> */}
                     </>
                 )}
-                <button
+                {isLoggedIn ? <button
                     onClick={logOutUser}
                     className="bg-[#4B006E]  w-fit mt-5 px-9 py-[10px] rounded-[190px]"
                 >
                     Logout
-                </button>
+                </button> : <Link
+                    to={'/login'}
+                    className="bg-[#4B006E]  w-fit mt-5 px-9 py-[10px] rounded-[190px]"
+                >
+                    Login
+                </Link>}
             </div>
         </div>
     );

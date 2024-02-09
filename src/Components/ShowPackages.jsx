@@ -18,13 +18,13 @@ const ShowPackages = () => {
     const [open, setOpen] = useState(false);
     const [userverifypayement, setUserVerifyPayement] = useState(0);
     const { user } = useSelector((state) => state.auth);
-    const { state, id } = useLocation();
+    const { state} = useLocation();
     // console.log(state.data, state.id, state.info);
 
     const getuserpaymentstatus = async () => {
         const res = await axiosClient.post("/getuserpaymentstatus", {
             userid: user?._id,
-            productid:state?.id,
+            productid:courseId,
         });
         if(res?.data?.status === "recieved"){
             setUserVerifyPayement(1)
@@ -43,74 +43,19 @@ const ShowPackages = () => {
     }, []);
 
     let data = [];
-    // if (state?.data == "A to Z SEO course") {
-    //     data = [
-    //         {
-    //             _id: "dfghfrigherighekrvndekjvndeedejkrfnv",
-    //             title: "Introduction",
-    //             vidioLink: video,
-    //         },
-    //         {
-    //             _id: "dfghfrigherighekrvndjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video,
-    //         },
-    //         {
-    //             _id: "dfghfrigherekrvndekjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video,
-    //         },
-    //     ];
-    // }
-    // if (state?.data == "Full stack digital marketing courses") {
-    //     data = [
-    //         {
-    //             _id: "dfghfrigherighekrvndekjvndeedejkrfnv",
-    //             title: "Introduction",
-    //             vidioLink: video1,
-    //         },
-    //         {
-    //             _id: "dfghfrigherighekrvndjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video1,
-    //         },
-    //         {
-    //             _id: "dfghfrigherekrvndekjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video1,
-    //         },
-    //     ];
-    // }
-    // if (state?.data == "Social media marketing mastery course") {
-    //     data = [
-    //         {
-    //             _id: "dfghfrigherighekrvndekjvndeedejkrfnv",
-    //             title: "Introduction",
-    //             vidioLink: video2,
-    //         },
-    //         {
-    //             _id: "dfghfrigherighekrvndjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video2,
-    //         },
-    //         {
-    //             _id: "dfghfrigherekrvndekjvndeedejkrfnv",
-    //             title: "How to get started",
-    //             vidioLink: video2,
-    //         },
-    //     ];
-    // }
     const [courseData, setCourseData] = useState(data);
     const [courseInfo, setCourseInfo] = useState({});
     const [videoContent, setVideoContent] = useState({});
-    console.log(courseInfo.title)
+    console.log(courseInfo)
     // console.log(courseInfo?.content[0]?.videoLink)
+
     
     
     const getcoursedata = async () => {
         const res = await axiosClient.get(`singleproduct/${courseId}`);
         console.log(res.data.content[0].videoLink);
         setVideoContent(res.data.content[0])
+        
         setCourseInfo(res?.data);
     };
     
@@ -269,7 +214,7 @@ const ShowPackages = () => {
                                 Course Overview
                             </h1>
                             <p className="text-[#FFFFFF] mt-4 font-normal font-lato text-xs leading-5 ml-3">
-                               {state?.info}
+                               {courseInfo?.information}
                             </p>
 
                             <h4 className="text-white font-lato ml-4 mt-5 text-base leading-5 font-light ">
