@@ -36,7 +36,6 @@ const OurPackages = () => {
 
     return (
         <section className="mb-[70px]">
-            
             <h1 className="font-bold text-white mt-12 pb-12 font-montserrat md:text-3xl text-center">
                 Our Packages
             </h1>
@@ -67,15 +66,11 @@ const OurPackages = () => {
                         ? packages.map((item, i) => (
                               <React.Fragment key={i}>
                                   <div
-                                      className={`md:w-[363px] my-5 transition delay-75 ease-in-out transform ${
-                                          i === 0 && translate == 0
-                                              ? null
-                                              : i === 1 && translate == 100
-                                              ? null
-                                              : i === 2 && translate == 200
-                                              ? null
-                                              : "md:scale-75"
-                                      } shrink-0 p-2.5 -translate-x-[${translate}%] rounded bg-white flex flex-col items-center`}
+                                  style={{
+                                    transform: `translateX(-${translate}%) scale(${i === 0 && translate === 0 ? '1' : '0.75' && i === 1 && translate === 100 ? '1' : '0.75' && i === 2 && translate === 200 ? '1' : '0.75'})`,
+                                    // transform:'scale()'
+                                  }}
+                                      className={`md:w-[363px] my-5 transition delay-75 ease-in-out transform shrink-0 p-2.5 rounded bg-white flex flex-col items-center`}
                                   >
                                       <div className="w-full rounded-[5px] bg-[#F2E676] ">
                                           <img

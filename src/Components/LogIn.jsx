@@ -30,7 +30,7 @@ const LogIn = () => {
         const { email, password } = userinput;
         try {
             if (!email || !password) {
-                return alert("All feilds are required!");
+                return alert("All fields are required!");
             }
             setLoading(true);
             const response = await axiosClient.post("login", {

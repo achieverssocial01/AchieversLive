@@ -30,7 +30,7 @@ const CreateAccount = () => {
         const { name, phone, email, password, confirm_password, referal } =
             userInput;
         if (!name || !phone || !email || !password || !confirm_password) {
-            return alert("All feilds are required!");
+            return alert("All fields are required!");
         }
         try {
             if (password !== confirm_password) {
