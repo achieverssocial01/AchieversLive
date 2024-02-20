@@ -13,30 +13,31 @@ import { axiosClient } from "../Utils/axiosClient";
 import { useSelector } from "react-redux";
 
 const ShowPackages = () => {
-    const {courseId} = useParams();
+    const { courseId } = useParams();
     const [passSuccess, setPassSuccess] = useState(false);
     const [open, setOpen] = useState(false);
     const [userverifypayement, setUserVerifyPayement] = useState(0);
     const { user } = useSelector((state) => state.auth);
-    const { state} = useLocation();
+    const { state } = useLocation();
     // console.log(state.data, state.id, state.info);
 
     const getuserpaymentstatus = async () => {
         const res = await axiosClient.post("/getuserpaymentstatus", {
             userid: user?._id,
-            productid:courseId,
+            productid: courseId,
         });
-        if(res?.data?.status === "recieved"){
-            setUserVerifyPayement(1)
+        console.log(res.data.status);
+        if (res?.data?.status === "recieved") {
+            setUserVerifyPayement(1);
         }
-        if(res?.data?.status === "rejected"){
-            setUserVerifyPayement(2)
+        if (res?.data?.status === "rejected") {
+            setUserVerifyPayement(2);
         }
-        if(res?.data?.status === "pending"){
-            setUserVerifyPayement(3)
+        if (res?.data?.status === "pending") {
+            setUserVerifyPayement(3);
         }
-
     };
+    console.log(userverifypayement)
 
     useEffect(() => {
         getuserpaymentstatus();
@@ -46,34 +47,31 @@ const ShowPackages = () => {
     const [courseData, setCourseData] = useState(data);
     const [courseInfo, setCourseInfo] = useState({});
     const [videoContent, setVideoContent] = useState({});
-    console.log(courseInfo)
+    console.log(courseInfo);
     // console.log(courseInfo?.content[0]?.videoLink)
 
-    
-    
     const getcoursedata = async () => {
         const res = await axiosClient.get(`singleproduct/${courseId}`);
         console.log(res.data.content[0].videoLink);
-        setVideoContent(res.data.content[0])
-        
+        setVideoContent(res.data.content[0]);
+        console.log(res.data);
         setCourseInfo(res?.data);
     };
-    
+
     useEffect(() => {
         getcoursedata();
     }, [courseId]);
-    
-    
+
     const [currentVideo, setCurrentVideo] = useState({
         currentVideo: 0,
-        link: courseInfo[0]?.vidioLink,
+        link: courseInfo[0]?.videoLink,
     });
 
     const menuRef = useRef();
 
     useEffect(() => {
         const handler = (e) => {
-            if (!menuRef.current.contains(e.target)) {
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
                 setOpen(false);
             }
         };
@@ -82,6 +80,8 @@ const ShowPackages = () => {
             document.removeEventListener("mousedown", handler);
         };
     }, []);
+
+    console.log(videoContent?.videoLink);
 
     return (
         <>
@@ -136,16 +136,31 @@ const ShowPackages = () => {
                     <div className="w-[full]">
                         <div className="rounded flex flex-col md:flex-row gap-[20px]  p-1 w-[full] mt-9">
                             <div className="bg-[#1A1C24]  py-2 w-full md:w-[70%]">
-                                {
-                                    userverifypayement ==1 ? 
-                             
-                                     <iframe color="white" width="56" height="315" src={videoContent?.videoLink} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen={true} className="w-full"></iframe> 
-                                     : 
-                                userverifypayement == 3 ?
-                                <h1 className="text-white">Your Payment verfication in pending</h1> :
-                                userverifypayement ==2 &&  <h1 className="text-white">Your Payment verfication Rejected</h1>
-                                }
-                               
+                                {userverifypayement == 1 ? (
+                                    (
+                                        <iframe
+                                            color="white"
+                                            width="56"
+                                            height="315"
+                                            src={videoContent?.videoLink}
+                                            title="YouTube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                                            allowFullScreen={true}
+                                            className="w-full"
+                                        ></iframe>
+                                    )
+                                ) : userverifypayement == 3 ? (
+                                    <h1 className="text-white">
+                                        Your Payment verfication in pending
+                                    </h1>
+                                ) : (
+                                    userverifypayement == 2 && (
+                                        <h1 className="text-white">
+                                            Your Payment verfication Rejected
+                                        </h1>
+                                    )
+                                )}
                             </div>
                             <div className="bg-[#1A1C24] w-full md:w-[30%] max-h-[100vh] overflow-auto	rounded p-4">
                                 <h1 className="text-white font-montserrat font-bold text-base">
@@ -159,7 +174,7 @@ const ShowPackages = () => {
                                                     setCurrentVideo({
                                                         ...currentVideo,
                                                         currentVideo: i,
-                                                        link: course?.vidioLink,
+                                                        link: course?.videoLink,
                                                     })
                                                 }
                                                 className={`flex gap-2 bg-${
@@ -214,7 +229,7 @@ const ShowPackages = () => {
                                 Course Overview
                             </h1>
                             <p className="text-[#FFFFFF] mt-4 font-normal font-lato text-xs leading-5 ml-3">
-                               {courseInfo?.information}
+                                {courseInfo?.information}
                             </p>
 
                             <h4 className="text-white font-lato ml-4 mt-5 text-base leading-5 font-light ">
@@ -222,23 +237,26 @@ const ShowPackages = () => {
                             </h4>
 
                             <div className="text-white font-lato pl-4 max-h-[300px] overflow-y-auto">
-                    {courseInfo?.courseOverview?.map((item, i) => (
-                        <React.Fragment key={i}>
-                            <b className="text-white font-lato ml-2 text-base leading-5 font-light">
-                                Module {i+1}
-                            </b>
-                            <h6 className="text-white font-lato ml-2 mt-2 text-base leading-5 font-light">
-                                {item?.name}
-                            </h6>
-                            {item?.points?.map((point, index)=>(
-                                <p key={index} className="flex gap-2 ml-4">
-                                <RxDotFilled className="mt-1" />
-                                {point}
-                            </p>
-                            ))}
-                        </React.Fragment>
-                    ))}
-                </div>
+                                {courseInfo?.courseOverview?.map((item, i) => (
+                                    <React.Fragment key={i}>
+                                        <b className="text-white font-lato ml-2 text-base leading-5 font-light">
+                                            Module {i + 1}
+                                        </b>
+                                        <h6 className="text-white font-lato ml-2 mt-2 text-base leading-5 font-light">
+                                            {item?.name}
+                                        </h6>
+                                        {item?.points?.map((point, index) => (
+                                            <p
+                                                key={index}
+                                                className="flex gap-2 ml-4"
+                                            >
+                                                <RxDotFilled className="mt-1" />
+                                                {point}
+                                            </p>
+                                        ))}
+                                    </React.Fragment>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
