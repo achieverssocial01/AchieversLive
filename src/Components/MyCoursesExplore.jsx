@@ -46,7 +46,7 @@ const MyCoursesExplore = () => {
                                         />
                                     </div>
                                     <div className="text-white rounded ml-4">
-                                        <Link to="/showCourses">
+                                        <Link to={`/showCourse/${product?._id}`}>
                                             {" "}
                                             <h1 className="font-montserrat mt-2 mb-2 text-xl leading-6 font-semibold">
                                                 {product.title}

@@ -52,6 +52,7 @@ const ShowPackages = () => {
 
     const getcoursedata = async () => {
         const res = await axiosClient.get(`singleproduct/${courseId}`);
+        console.log(res)
         console.log(res.data.content[0].videoLink);
         setVideoContent(res.data.content[0]);
         console.log(res.data);
