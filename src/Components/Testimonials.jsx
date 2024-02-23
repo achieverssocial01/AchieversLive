@@ -32,7 +32,7 @@ const Testimonials = () => {
                         <div className="">
                             <img
                                 className="inline-block h-12 w-12 space-x-5 rounded-full ring-2 ring-white"
-                                src="/img1.png"
+                                src="/img1.jpg"
                                 alt=""
                             />
                         </div>
@@ -42,7 +42,8 @@ const Testimonials = () => {
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
-                            <MdStarOutline className="text-[#BF953F]" />
+                            <MdOutlineStarPurple500 />
+                            {/* <MdStarOutline className="text-[#BF953F]" /> */}
                         </span>
                         <p className="font-sans font-medium text-sm leading-5 ">
                             "Enrolling in the Achievers Edutech course was a
@@ -65,7 +66,7 @@ const Testimonials = () => {
                         <div className="">
                             <img
                                 className="inline-block h-12 w-12 space-x-5 rounded-full ring-2 ring-white"
-                                src="/img2.jpg"
+                                src="/img1.png"
                                 alt=""
                             />
                         </div>
@@ -75,7 +76,8 @@ const Testimonials = () => {
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
-                            <MdStarOutline className="text-[#BF953F]" />
+                            <MdOutlineStarPurple500 />
+                            {/* <MdStarOutline className="text-[#BF953F]" /> */}
                         </span>
                         <p className="font-sans font-medium text-sm leading-5 ">
                             "Being a 10th-grade dropout, the Achievers Edutech
@@ -108,7 +110,8 @@ const Testimonials = () => {
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
-                            <MdStarOutline className="text-[#BF953F]" />
+                            <MdOutlineStarPurple500 />
+                            {/* <MdStarOutline className="text-[#BF953F]" /> */}
                         </span>
                         <p className="font-sans font-medium text-sm leading-5 mt-8">
                             "As a housewife, reentering the workforce seemed
