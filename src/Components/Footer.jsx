@@ -80,7 +80,7 @@ const Footer = () => {
                             <Link to="https://maps.app.goo.gl/t3WgDwRDmZo4Mim77">
                                 <div className="md:flex gap-1">
                                     <IoLocation className="mt-2" />
-                                    <span>Ginger Mall,Nagpur</span>
+                                    <span>6th Block, Koramangala, <br/>Bengaluru - 560034</span>
                                 </div>
                             </Link>
                             <Link to="https://www.google.co.in/">
@@ -91,7 +91,7 @@ const Footer = () => {
                             </Link>
                             <div className="flex gap-1">
                                 <IoMdCall className="mt-2 rounded-full md:w-3 md:h-3 bg-white text-black-800" />
-                                <span>+91 9911223344</span>
+                                <span>+91 7841062889</span>
                             </div>
                         </div>
                     </div>

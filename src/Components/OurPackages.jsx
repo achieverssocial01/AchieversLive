@@ -42,19 +42,24 @@ const OurPackages = () => {
             <div className="flex w-[100%] md:pl-[50px]  items-center ">
                 <div className=" flex-1 w-auto flex-col gap-[20px] hidden md:flex">
                     <h1 className="font-montserrat text-white md:text-3xl leading-9">
-                        Bronze Package
+                        Our courses
                     </h1>
                     <p className="text-[#8B8989] w-[96%] leading-6 font-poppins text-base">
-                        Elevate Your Professional Journey with Our Bronze
-                        Package. Ideal for mastering MS-Office tools, interview
-                        skills, and business acumen, this comprehensive course
-                        bundle positions you as a standout leader. From honing
-                        professional skills to boosting mental flexibility, the
-                        Bronze Package is your gateway to success in a dynamic
-                        professional landscape.
+                        With a focus on industry-relevant certifications, our
+                        program not only validates participants' expertise but
+                        also enhances their marketability, positioning them as
+                        sought-after professionals in the competitive digital
+                        marketing space. The collaborative learning environment
+                        encourages networking and knowledge exchange, fostering
+                        a community of like-minded individuals who share
+                        insights and opportunities, further enriching the
+                        overall learning experience.
                     </p>
 
-                    <Link to={'/all-courses'} className="bg-[#4B006E] text-white md:w-fit px-8 py-4 text-sm font-semibold leading-5 font-montserrat rounded-full">
+                    <Link
+                        to={"/all-courses"}
+                        className="bg-[#4B006E] text-white md:w-fit px-8 py-4 text-sm font-semibold leading-5 font-montserrat rounded-full"
+                    >
                         Buy Now
                     </Link>
                 </div>
@@ -66,10 +71,22 @@ const OurPackages = () => {
                         ? packages.map((item, i) => (
                               <React.Fragment key={i}>
                                   <div
-                                  style={{
-                                    transform: `translateX(-${translate}%) scale(${i === 0 && translate === 0 ? '1' : '0.75' && i === 1 && translate === 100 ? '1' : '0.75' && i === 2 && translate === 200 ? '1' : '0.75'})`,
-                                    // transform:'scale()'
-                                  }}
+                                      style={{
+                                          transform: `translateX(-${translate}%) scale(${
+                                              i === 0 && translate === 0
+                                                  ? "1"
+                                                  : "0.75" &&
+                                                    i === 1 &&
+                                                    translate === 100
+                                                  ? "1"
+                                                  : "0.75" &&
+                                                    i === 2 &&
+                                                    translate === 200
+                                                  ? "1"
+                                                  : "0.75"
+                                          })`,
+                                          // transform:'scale()'
+                                      }}
                                       className={`md:w-[363px] my-5 transition delay-75 ease-in-out transform shrink-0 p-2.5 rounded bg-white flex flex-col items-center`}
                                   >
                                       <div className="w-full rounded-[5px] bg-[#F2E676] ">
